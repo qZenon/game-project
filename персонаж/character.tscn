@@ -1,10 +1,76 @@
 [gd_scene format=3 uid="uid://dahu2al5wpejs"]
 
+[ext_resource type="Script" uid="uid://bgx4yilnsv35w" path="res://персонаж/character.gd" id="1_b1bi1"]
+[ext_resource type="Texture2D" uid="uid://3j5nehjy5gt3" path="res://mystic_woods_free/sprites/characters/player.png" id="1_ne3qg"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vu45j"]
 radius = 24.0
 height = 80.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1bi1"]
+atlas = ExtResource("1_ne3qg")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uani"]
+atlas = ExtResource("1_ne3qg")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m76cn"]
+atlas = ExtResource("1_ne3qg")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqa7b"]
+atlas = ExtResource("1_ne3qg")
+region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5gce"]
+atlas = ExtResource("1_ne3qg")
+region = Rect2(192, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqwco"]
+atlas = ExtResource("1_ne3qg")
+region = Rect2(240, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f7lb5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1bi1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uani")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m76cn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqa7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5gce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqwco")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=2033829913]
+script = ExtResource("1_b1bi1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=236234697]
 shape = SubResource("CapsuleShape2D_vu45j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1863311651]
+position = Vector2(-0.9999958, -15.999993)
+scale = Vector2(2.1666667, 2.2916667)
+sprite_frames = SubResource("SpriteFrames_f7lb5")
+animation = &"idle"
+frame_progress = 0.6850217
