@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vu45j"]
 radius = 24.0
-height = 80.0
+height = 69.99999
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b1bi1"]
 atlas = ExtResource("1_ne3qg")
@@ -66,11 +66,21 @@ animations = [{
 script = ExtResource("1_b1bi1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=236234697]
+position = Vector2(0, -12)
+scale = Vector2(0.4, 0.4)
 shape = SubResource("CapsuleShape2D_vu45j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1863311651]
-position = Vector2(-0.9999958, -15.999993)
-scale = Vector2(2.1666667, 2.2916667)
+position = Vector2(0, -20)
+scale = Vector2(1, 1.058)
 sprite_frames = SubResource("SpriteFrames_f7lb5")
 animation = &"idle"
 frame_progress = 0.6850217
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1491351038]
+position = Vector2(4, -10)
+zoom = Vector2(3.5, 3.5)
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
