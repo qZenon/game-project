@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dahu2al5wpejs"]
 
 [ext_resource type="Script" uid="uid://bgx4yilnsv35w" path="res://персонаж/character.gd" id="1_b1bi1"]
-[ext_resource type="Texture2D" uid="uid://3j5nehjy5gt3" path="res://mystic_woods_free/sprites/characters/player.png" id="1_ne3qg"]
+[ext_resource type="Texture2D" uid="uid://3j5nehjy5gt3" path="res://персонаж/player.png" id="1_ne3qg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vu45j"]
 radius = 24.0
@@ -31,6 +31,30 @@ region = Rect2(192, 48, 48, 48)
 atlas = ExtResource("1_ne3qg")
 region = Rect2(240, 48, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehhb2"]
+atlas = ExtResource("1_ne3qg")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u2lg"]
+atlas = ExtResource("1_ne3qg")
+region = Rect2(48, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqnom"]
+atlas = ExtResource("1_ne3qg")
+region = Rect2(96, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tq8s2"]
+atlas = ExtResource("1_ne3qg")
+region = Rect2(144, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwxof"]
+atlas = ExtResource("1_ne3qg")
+region = Rect2(192, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhm41"]
+atlas = ExtResource("1_ne3qg")
+region = Rect2(240, 192, 48, 48)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_f7lb5"]
 animations = [{
 "frames": [{
@@ -56,10 +80,28 @@ animations = [{
 "name": &"idle",
 "speed": 10.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehhb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u2lg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqnom")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tq8s2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwxof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhm41")
+}],
 "loop": 1,
-"name": &"new_animation",
-"speed": 5.0
+"name": &"run",
+"speed": 10.0
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=2033829913]
@@ -74,8 +116,8 @@ shape = SubResource("CapsuleShape2D_vu45j")
 position = Vector2(0, -20)
 scale = Vector2(1, 1.058)
 sprite_frames = SubResource("SpriteFrames_f7lb5")
-animation = &"idle"
-frame_progress = 0.6850217
+animation = &"run"
+frame_progress = 0.7032049
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1491351038]
 position = Vector2(4, -10)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3j5nehjy5gt3"
-path="res://.godot/imported/player.png-fa92402572096617476b534e4b6ea995.ctex"
+uid="uid://b2dwsejs8l7cb"
+path="res://.godot/imported/game-project.png-f4497773681458ab81d19250333e8fa0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mystic_woods_free/sprites/characters/player.png"
-dest_files=["res://.godot/imported/player.png-fa92402572096617476b534e4b6ea995.ctex"]
+source_file="res://game-project.png"
+dest_files=["res://.godot/imported/game-project.png-f4497773681458ab81d19250333e8fa0.ctex"]
 
 [params]
 
