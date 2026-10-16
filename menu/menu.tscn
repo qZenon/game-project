@@ -1,3 +1,26 @@
 [gd_scene format=3 uid="uid://brfjfihiyauqk"]
 
+[ext_resource type="Script" uid="uid://cv418uq3myam5" path="res://menu/menu.gd" id="1_j0t7f"]
+
 [node name="menu" type="Node2D" unique_id=424868086]
+process_mode = 3
+script = ExtResource("1_j0t7f")
+
+[node name="Button" type="Button" parent="." unique_id=170102675]
+offset_left = 432.0
+offset_top = 259.0
+offset_right = 1453.0
+offset_bottom = 426.0
+theme_override_font_sizes/font_size = 50
+text = "ИГРАТЬ"
+
+[node name="Button2" type="Button" parent="." unique_id=483946972]
+offset_left = 432.0
+offset_top = 479.0
+offset_right = 1453.0
+offset_bottom = 646.0
+theme_override_font_sizes/font_size = 50
+text = "ВЫЙТИ"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

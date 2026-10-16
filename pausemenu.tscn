@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c3rupivbltuao"]
+
+[ext_resource type="Script" uid="uid://dac74hpg8adtp" path="res://pausemenu.gd" id="1_0mw5b"]
+
+[node name="pausemenu" type="CanvasLayer" unique_id=482700518]
+process_mode = 2
+script = ExtResource("1_0mw5b")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1543680306]
+offset_left = 2.0
+offset_top = 13.0
+offset_right = 1918.0
+offset_bottom = 1092.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1466772055]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=781089853]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "ПРОДОЛЖИТЬ"
+
+[node name="Button2" type="Button" parent="CenterContainer/VBoxContainer" unique_id=369849668]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "ВЫЙТИ"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dahu2al5wpejs" path="res://персонаж/character.tscn" id="1_vasa2"]
 [ext_resource type="Texture2D" uid="uid://ca84le2vpg4lq" path="res://Texture/TX Tileset Grass.png" id="2_h7iqs"]
+[ext_resource type="PackedScene" uid="uid://c3rupivbltuao" path="res://pausemenu.tscn" id="3_h7iqs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4fuuu"]
 texture = ExtResource("2_h7iqs")
@@ -266,6 +267,9 @@ texture = ExtResource("2_h7iqs")
 sources/0 = SubResource("TileSetAtlasSource_4fuuu")
 
 [node name="game" type="Node2D" unique_id=325012132]
+
+[node name="pausemenu" parent="." unique_id=482700518 instance=ExtResource("3_h7iqs")]
+process_mode = 3
 
 [node name="TileMap" type="TileMap" parent="." unique_id=2065986384]
 tile_set = SubResource("TileSet_uk4om")
