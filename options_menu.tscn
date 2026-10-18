@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://jp4ieb7mcv3v"]
+
+[ext_resource type="Script" uid="uid://blkwypf778nqq" path="res://options_menu.gd" id="1_lbr8e"]
+
+[node name="OptionsMenu" type="Control" unique_id=994691382]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_lbr8e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=538301599]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=1357724385]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "НАСТРОЙКИ"
+
+[node name="HBoxContainer_Music" type="HBoxContainer" parent="VBoxContainer" unique_id=1297389900]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer_Music" unique_id=630583345]
+layout_mode = 2
+text = "Громкость музыки"
+
+[node name="MusicSlider" type="HSlider" parent="VBoxContainer/HBoxContainer_Music" unique_id=2048475055]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.06
+value = 1.0
+
+[node name="HBoxContainer_SFX" type="HBoxContainer" parent="VBoxContainer" unique_id=773684721]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer_SFX" unique_id=1296673526]
+layout_mode = 2
+text = "Звуковые эффекты"
+
+[node name="SFXSlider" type="HSlider" parent="VBoxContainer/HBoxContainer_SFX" unique_id=1434375856]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="HBoxContainer_Display" type="HBoxContainer" parent="VBoxContainer" unique_id=331099287]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer_Display" unique_id=503496138]
+layout_mode = 2
+text = "Полноэкранный режим"
+
+[node name="FullscreenCheck" type="CheckButton" parent="VBoxContainer/HBoxContainer_Display" unique_id=1365854146]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="VBoxContainer" unique_id=499732153]
+layout_mode = 2
+text = "НАЗАД"
