@@ -1,26 +1,138 @@
 [gd_scene format=3 uid="uid://brfjfihiyauqk"]
 
 [ext_resource type="Script" uid="uid://cv418uq3myam5" path="res://menu/menu.gd" id="1_j0t7f"]
+[ext_resource type="Texture2D" uid="uid://nlp7w5bvnhvp" path="res://menu/Unknown.jpg" id="2_6nwqt"]
+[ext_resource type="FontFile" uid="uid://d4dv207i202xh" path="res://menu/GeistPixel-Regular-VariableFont_ELSH.ttf" id="2_g18jx"]
+[ext_resource type="Shader" uid="uid://c47n4bttda6hp" path="res://menu/menu.gdshader" id="2_svuvw"]
+[ext_resource type="FontFile" uid="uid://drgot3yyo20t5" path="res://menu/Orbitron-VariableFont_wght.ttf" id="4_pbjm4"]
 
-[node name="menu" type="Node2D" unique_id=424868086]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_svuvw"]
+shader = ExtResource("2_svuvw")
+shader_parameter/speed = Vector2(0.02, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nwqt"]
+bg_color = Color(0.42745098, 0, 0.6039216, 0.64705884)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.563481, 0.00022929489, 0.5634769, 1)
+shadow_color = Color(0.42745098, 0, 0.6039216, 0.45490196)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svuvw"]
+bg_color = Color(0.42745098, 0, 0.6039216, 0.64705884)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9072065, 0.0006634343, 0.9072004, 1)
+shadow_color = Color(0.42745098, 0, 0.6039216, 0.45490196)
+shadow_size = 5
+
+[node name="menu" type="Control" unique_id=477900133]
 process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_j0t7f")
 
-[node name="Button" type="Button" parent="." unique_id=170102675]
-offset_left = 432.0
-offset_top = 259.0
-offset_right = 1453.0
-offset_bottom = 426.0
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1326138455]
+texture_filter = 2
+texture_repeat = 2
+material = SubResource("ShaderMaterial_svuvw")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6nwqt")
+expand_mode = 1
+stretch_mode = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1442212465]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=861240315]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="GameTitle" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1296523513]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6907556, 0.22509632, 0.97554916, 1)
+theme_override_colors/font_shadow_color = Color(0.48760957, 0.046759218, 0.71480167, 1)
+theme_override_colors/font_outline_color = Color(0.3372549, 0.10980392, 0.75686276, 0.5372549)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("2_g18jx")
+theme_override_font_sizes/font_size = 100
+text = "NullScape 2D"
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=904386726]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=170102675]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.8235294, 0.9490196, 1)
+theme_override_fonts/font = ExtResource("4_pbjm4")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_6nwqt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_svuvw")
+theme_override_styles/focus = SubResource("StyleBoxFlat_svuvw")
 text = "ИГРАТЬ"
 
-[node name="Button2" type="Button" parent="." unique_id=483946972]
-offset_left = 432.0
-offset_top = 479.0
-offset_right = 1453.0
-offset_bottom = 646.0
+[node name="StatsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=838450899]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.8235294, 0.9490196, 1)
+theme_override_fonts/font = ExtResource("4_pbjm4")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_6nwqt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_svuvw")
+theme_override_styles/focus = SubResource("StyleBoxFlat_svuvw")
+text = "СТАТИСТИКА"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=551560765]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.8235294, 0.9490196, 1)
+theme_override_fonts/font = ExtResource("4_pbjm4")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_6nwqt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_svuvw")
+theme_override_styles/focus = SubResource("StyleBoxFlat_svuvw")
+text = "НАСТРОЙКИ"
+
+[node name="ExitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=483946972]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.8235294, 0.9490196, 1)
+theme_override_fonts/font = ExtResource("4_pbjm4")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_6nwqt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_svuvw")
+theme_override_styles/focus = SubResource("StyleBoxFlat_svuvw")
 text = "ВЫЙТИ"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StatsButton" to="." method="_on_stats_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

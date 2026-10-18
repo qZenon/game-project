@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c3rupivbltuao" path="res://pausemenu.tscn" id="3_h7iqs"]
 [ext_resource type="Script" path="res://game/arena_generator.gd" id="4_arena"]
 [ext_resource type="Script" path="res://game/gift_manager.gd" id="5_gifts"]
+[ext_resource type="Script" path="res://game/round_controller.gd" id="6_round"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4fuuu"]
 texture = ExtResource("2_h7iqs")
@@ -287,3 +288,6 @@ z_index = 100
 
 [node name="GiftManager" type="Node2D" parent="."]
 script = ExtResource("5_gifts")
+
+[node name="RoundController" type="Node" parent="."]
+script = ExtResource("6_round")
