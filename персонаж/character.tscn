@@ -120,9 +120,9 @@ animation = &"run"
 frame_progress = 0.7032049
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1491351038]
-position = Vector2(4, -10)
+position = Vector2(0, 0)
 zoom = Vector2(3.5, 3.5)
-position_smoothing_enabled = true
-rotation_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
+position_smoothing_enabled = false
+rotation_smoothing_enabled = false
+drag_horizontal_enabled = false
+drag_vertical_enabled = false
