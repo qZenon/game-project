@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://drgot3yyo20t5"
-path="res://.godot/imported/Orbitron-VariableFont_wght.ttf-20e214840e83c4a8897a05889557e64f.fontdata"
+uid="uid://r3tagn6kdyjs"
+path="res://.godot/imported/Oswald-VariableFont_wght.ttf-e0c3376eaf2c63807a2abcbfdd236bd1.fontdata"
 
 [deps]
 
-source_file="res://menu/Orbitron-VariableFont_wght.ttf"
-dest_files=["res://.godot/imported/Orbitron-VariableFont_wght.ttf-20e214840e83c4a8897a05889557e64f.fontdata"]
+source_file="res://menu/Oswald-VariableFont_wght.ttf"
+dest_files=["res://.godot/imported/Oswald-VariableFont_wght.ttf-e0c3376eaf2c63807a2abcbfdd236bd1.fontdata"]
 
 [params]
 

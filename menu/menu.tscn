@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://nlp7w5bvnhvp" path="res://menu/Unknown.jpg" id="2_6nwqt"]
 [ext_resource type="FontFile" uid="uid://d4dv207i202xh" path="res://menu/GeistPixel-Regular-VariableFont_ELSH.ttf" id="2_g18jx"]
 [ext_resource type="Shader" uid="uid://c47n4bttda6hp" path="res://menu/menu.gdshader" id="2_svuvw"]
-[ext_resource type="FontFile" uid="uid://drgot3yyo20t5" path="res://menu/Orbitron-VariableFont_wght.ttf" id="4_pbjm4"]
+[ext_resource type="FontFile" uid="uid://r3tagn6kdyjs" path="res://menu/Oswald-VariableFont_wght.ttf" id="5_svuvw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_svuvw"]
 shader = ExtResource("2_svuvw")
@@ -89,7 +89,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.9490196, 0.8235294, 0.9490196, 1)
-theme_override_fonts/font = ExtResource("4_pbjm4")
+theme_override_fonts/font = ExtResource("5_svuvw")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_6nwqt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_svuvw")
@@ -101,7 +101,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.9490196, 0.8235294, 0.9490196, 1)
-theme_override_fonts/font = ExtResource("4_pbjm4")
+theme_override_fonts/font = ExtResource("5_svuvw")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_6nwqt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_svuvw")
@@ -113,7 +113,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.9490196, 0.8235294, 0.9490196, 1)
-theme_override_fonts/font = ExtResource("4_pbjm4")
+theme_override_fonts/font = ExtResource("5_svuvw")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_6nwqt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_svuvw")
@@ -125,7 +125,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.9490196, 0.8235294, 0.9490196, 1)
-theme_override_fonts/font = ExtResource("4_pbjm4")
+theme_override_fonts/font = ExtResource("5_svuvw")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_6nwqt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_svuvw")
