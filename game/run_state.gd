@@ -154,6 +154,22 @@ static func enter_round_lobby(n: int) -> void:
 static func add_golden_gifts(amount: int) -> void:
     golden_gifts += maxi(0, amount)
 
+## Second Chance: тратит один заряд и возвращает true, если удар удалось предотвратить (п. 15, 16).
+static func consume_second_chance() -> bool:
+    if second_chance_charges <= 0:
+        return false
+    second_chance_charges -= 1
+    return true
+
+## Интервал между сериями Slash при текущем числе выборов: 15, 13, 11, 9 секунд (п. 13.1).
+static func slash_interval() -> float:
+    var index := clampi(enemy_count("slash") - 1, 0, SLASH_INTERVALS.size() - 1)
+    return float(SLASH_INTERVALS[index])
+
+## Разрезов в серии Slash: 2, плюс по одному за каждый Deep Cuts (максимум два).
+static func slash_series_count() -> int:
+    return SLASH_BASE_COUNT + mini(curse_count("deep_cuts"), 2)
+
 ## Контекст для советов во время подготовки арены (RoundController.run_context).
 static func get_run_context() -> Dictionary:
     var enemies: Array[String] = []

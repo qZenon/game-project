@@ -1,6 +1,10 @@
 extends CharacterBody2D
 
 signal void_death
+## Игрок погиб: cause - "void", "slash" и т. д.
+signal died(cause: String)
+## Смертельный удар предотвращён Second Chance.
+signal second_chance_used
 
 ## Базовая скорость персонажа. Улучшения скорости будут менять это значение.
 @export var SPEED: float = 100.0
@@ -8,12 +12,18 @@ signal void_death
 ## Временно: после смерти игрок возвращается в главное меню через эту паузу (чтобы успеть увидеть надпись).
 @export_range(0.0, 5.0, 0.1) var death_menu_delay: float = 1.5
 const MAIN_MENU_SCENE := "res://menu/menu.tscn"
+const RUN := preload("res://game/run_state.gd")
 
 var kda: bool = true
 var hp: int = 100
 var stm: float = 100.0
 var fall_time_left: float = 0.0
 var is_falling_into_void: bool = false
+## true после смерти от чего угодно: после этого персонаж не двигается, подарки и маяк не берутся.
+var is_dead: bool = false
+## Причина смерти ("void", "slash", ...) для экрана поражения и статистики (21.16).
+var death_cause: String = ""
+## true только при смерти от Пустоты.
 var is_void_dead: bool = false
 ## Пока true, персонаж стоит на месте (подготовка арены и отсчёт). Позже это же условие запретит телепорт.
 var controls_locked: bool = false
@@ -28,6 +38,9 @@ const MAX_CAMERA_ZOOM: float = 5.5
 const CAMERA_ZOOM_STEP: float = 0.25
 const CAMERA_ZOOM_SMOOTHING: float = 10.0
 var target_camera_zoom: float = 3.5
+var _shake_time: float = 0.0
+var _shake_total: float = 0.01
+var _shake_strength: float = 0.0
 
 var void_overlay: ColorRect
 var fall_label: Label
@@ -39,7 +52,7 @@ func _ready() -> void:
 	_create_void_ui()
 
 func _physics_process(delta: float) -> void:
-	if is_void_dead:
+	if is_dead:
 		velocity = Vector2.ZERO
 		return
 
@@ -91,10 +104,26 @@ func _process(delta: float) -> void:
 		return
 	var zoom_value := lerpf(camera.zoom.x, target_camera_zoom, 1.0 - exp(-CAMERA_ZOOM_SMOOTHING * delta))
 	camera.zoom = Vector2(zoom_value, zoom_value)
+	_update_camera_shake(delta)
+
+## Тряска камеры (удар врага). strength - максимальное смещение в пикселях мира, затухает к концу.
+func shake_camera(strength: float, duration: float) -> void:
+	_shake_strength = strength
+	_shake_total = maxf(duration, 0.01)
+	_shake_time = _shake_total
+
+func _update_camera_shake(delta: float) -> void:
+	if _shake_time <= 0.0:
+		return
+	_shake_time = maxf(0.0, _shake_time - delta)
+	var fade := _shake_time / _shake_total
+	camera.offset = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)) * _shake_strength * fade
+	if _shake_time <= 0.0:
+		camera.offset = Vector2.ZERO
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Масштабом можно управлять только после старта раунда.
-	if is_void_dead or controls_locked or camera_preview_active:
+	if is_dead or controls_locked or camera_preview_active:
 		return
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
@@ -185,25 +214,60 @@ void fragment() {
 	canvas.add_child(void_death_label)
 
 func _set_fall_warning(enabled: bool) -> void:
-	fall_label.visible = enabled and not is_void_dead
+	fall_label.visible = enabled and not is_dead
 	void_overlay_material.set_shader_parameter("warning_amount", 1.0 if enabled else 0.0)
 	if enabled:
 		anim.modulate = Color("ffb0b0")
 	else:
 		anim.modulate = Color.WHITE
 
+## Смертельный удар врага (Slash, Mimic, Operator). Возвращает true, если игрок погиб,
+## и false, если удар предотвратил Second Chance (п. 16). От Void Death Second Chance не защищает.
+func take_lethal_hit(cause: String) -> bool:
+	if is_dead:
+		return true
+	if RUN.consume_second_chance():
+		second_chance_used.emit()
+		return false
+	_die(cause)
+	return true
+
 func _trigger_void_death() -> void:
-	if is_void_dead:
+	if is_dead:
 		return
 	is_void_dead = true
+	void_overlay_material.set_shader_parameter("warning_amount", 1.0)
+	anim.modulate = Color("ff4656")
+	void_death.emit()
+	_die("void")
+
+func _die(cause: String) -> void:
+	if is_dead:
+		return
+	is_dead = true
+	death_cause = cause
 	is_falling_into_void = false
 	velocity = Vector2.ZERO
 	fall_label.visible = false
-	void_overlay_material.set_shader_parameter("warning_amount", 1.0)
-	void_death_label.visible = true
-	anim.modulate = Color("ff4656")
-	void_death.emit()
+	_show_death_text(cause)
+	died.emit(cause)
 	_return_to_main_menu()
+
+## Временная надпись до экрана поражения (21.16).
+func _show_death_text(cause: String) -> void:
+	var title := "VOID DEATH"
+	var color := Color("ff4656")
+	match cause:
+		"slash":
+			title = "SLASH"
+			color = Color("b57cff")
+		"void":
+			title = "VOID DEATH"
+		_:
+			title = cause.to_upper()
+	void_death_label.text = title + "\nЗАБЕГ ОКОНЧЕН"
+	void_death_label.add_theme_color_override("font_color", color)
+	void_death_label.visible = true
 
 func _return_to_main_menu() -> void:
 	await get_tree().create_timer(death_menu_delay).timeout

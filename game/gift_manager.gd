@@ -167,7 +167,7 @@ func _physics_process(_delta: float) -> void:
 		_player = get_node_or_null(player_path) as Node2D
 		if _player == null:
 			return
-	if _player.get("is_void_dead") == true:
+	if _player.get("is_dead") == true:
 		return
 
 	var player_local := to_local(_player.global_position)

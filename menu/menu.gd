@@ -2,6 +2,7 @@ extends Control
 
 # Путь к вашей сцене игры
 const GAME_SCENE_PATH = "res://game/lobby.tscn"
+const RUN := preload("res://game/run_state.gd")
 
 # Путь к вашей сцене настроек (скорректируйте, если файл лежит в другом месте)
 const OPTIONS_MENU_PATH = "res://options_menu.tscn"
@@ -53,6 +54,9 @@ func start_title_pulsation() -> void:
 # --- Обработка сигналов кнопок ---
 
 func _on_play_button_pressed() -> void:
+	# Новый забег: враги, проклятия, улучшения и золото прошлого забега сбрасываются.
+	RUN.start_run()
+	Engine.set_meta("nullscape_round", 1)
 	var error = get_tree().change_scene_to_file(GAME_SCENE_PATH)
 	if error != OK:
 		print("Ошибка загрузки сцены игры: ", error)

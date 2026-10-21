@@ -1,33 +1,15 @@
-[gd_scene format=3 uid="uid://dtm0331hueqi7"]
+[gd_scene format=3]
 
-[ext_resource type="Script" uid="uid://g1ixk652ccua" path="res://game/lobby.gd" id="1_lobby"]
-[ext_resource type="Texture2D" uid="uid://hon6vigosttt" path="res://game/images.jpeg" id="2_0uhea"]
-[ext_resource type="Script" uid="uid://btwji10obqltu" path="res://game/screamer_canvas.gd" id="2_14g7x"]
+[ext_resource type="Script" path="res://game/lobby.gd" id="1_lobby"]
 [ext_resource type="PackedScene" uid="uid://dahu2al5wpejs" path="res://персонаж/character.tscn" id="2_char"]
 [ext_resource type="PackedScene" uid="uid://c3rupivbltuao" path="res://pausemenu.tscn" id="3_pause"]
 
-[node name="Lobby" type="Node2D" unique_id=338519752]
+[node name="Lobby" type="Node2D"]
 script = ExtResource("1_lobby")
 
-[node name="ScreamerCanvas" type="CanvasLayer" parent="." unique_id=968218630]
-script = ExtResource("2_14g7x")
-
-[node name="ScreamerTexture" type="TextureRect" parent="ScreamerCanvas" unique_id=1159850241]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_0uhea")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ScreamerSound" type="AudioStreamPlayer" parent="ScreamerCanvas" unique_id=1192199654]
-
-[node name="pausemenu" parent="." unique_id=663439423 instance=ExtResource("3_pause")]
+[node name="pausemenu" parent="." instance=ExtResource("3_pause")]
 process_mode = 3
 
-[node name="CharacterBody2D" parent="." unique_id=983061596 instance=ExtResource("2_char")]
-z_index = 100
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_char")]
 position = Vector2(0, 42)
+z_index = 100

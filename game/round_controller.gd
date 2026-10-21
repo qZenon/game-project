@@ -43,6 +43,7 @@ var round_active: bool = false
 const RUN := preload("res://game/run_state.gd")
 const LOBBY_SCENE := "res://game/lobby.tscn"
 const BEACON_SCRIPT := preload("res://game/beacon.gd")
+const SLASH_SCRIPT := preload("res://game/enemy_slash.gd")
 const COLLAPSE_SCRIPT := preload("res://game/collapse_manager.gd")
 const PREVIEW_MARGIN := 90.0       # запас вокруг арены при обзоре, в пикселях мира
 const PREVIEW_UI_RESERVE := 420.0  # высота экрана под баннер и панель подготовки
@@ -97,6 +98,8 @@ var _zoom_timer := 0.0
 var _beacon: Node2D
 var _collapse: Node
 var _flash_rect: ColorRect
+## Враги, выбранные в этом забеге. У каждого есть start() и stop().
+var _enemies: Array[Node] = []
 
 var _sfx: Dictionary = {}
 var _canvas: CanvasLayer
@@ -144,6 +147,7 @@ func _begin_preparation() -> void:
 	_beacon.set("player", _player)
 	_arena.add_child(_beacon)
 	_beacon.connect("touched", _on_beacon_touched)
+	_spawn_enemies()
 
 	_begin_camera_preview()
 	var round_number: int = clampi(int(_arena.round_number), 1, FINAL_ROUND)
@@ -320,6 +324,8 @@ func _go() -> void:
 	_flash_count_label(0.9)
 	_play_sfx("go")
 	round_started.emit()
+	for enemy in _enemies:
+		enemy.call("start")
 
 # ---------------------------------------------------------------- золотые подарки, маяк, конец раунда (21.12)
 
@@ -340,6 +346,8 @@ func _on_beacon_touched() -> void:
 	phase = Phase.FINISHED
 	round_active = false
 	_collapse.call("stop")
+	for enemy in _enemies:
+		enemy.call("stop")
 	_play_sfx("beacon")
 	var golden_collected := 0
 	var golden_total := 0
@@ -355,6 +363,17 @@ func _on_beacon_touched() -> void:
 	var tween := create_tween()
 	tween.tween_property(_flash_rect, "color:a", 1.0, 0.25)
 	tween.tween_callback(_load_next_round)
+
+## Враги создаются по выбору в лобби (RunState) и стартуют вместе с раундом, по "НАЧАЛИ!".
+func _spawn_enemies() -> void:
+	_enemies.clear()
+	if RUN.enemy_count("slash") > 0:
+		var slash: Node2D = SLASH_SCRIPT.new()
+		slash.name = "SlashEnemy"
+		slash.set("arena", _arena)
+		slash.set("player", _player)
+		_arena.add_child(slash)
+		_enemies.append(slash)
 
 func _load_next_round() -> void:
 	var next_round: int = int(_arena.round_number) + 1

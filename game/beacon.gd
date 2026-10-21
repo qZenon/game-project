@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 func _physics_process(_delta: float) -> void:
     if not active or _appear < 1.0 or player == null or not is_instance_valid(player):
         return
-    if player.get("is_void_dead") == true:
+    if player.get("is_dead") == true:
         return
     if player.global_position.distance_to(global_position) <= touch_radius:
         active = false
